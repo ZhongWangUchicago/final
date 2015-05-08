@@ -1,0 +1,17 @@
+<h1>Restaurant</h1><%= link_to "Create Restaurant", restaurants_new_url %>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+        </tr>
+    <thead>
+
+    <% @restaurants.each do |restaurant| %>
+        <tr>
+            <td><%= link_to restaurant.name, restaurants_show_url(restaurant.id) %></td>
+            <td><%= restaurant.description %></td>
+        </tr>
+    <% end %>
+</table>

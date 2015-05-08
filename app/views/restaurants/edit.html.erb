@@ -1,0 +1,5 @@
+<%= form_tag restaurants_update_url(@restaurant.id), :method => 'patch' do %>
+    <label>Name</label><input name="name" type="text" value="<%= @restaurant.name %>"></input><br>
+    <label>Description</label><input name="description" type="text" value="<%= @restaurant.description %>"></input><br>
+    <button>Submit</button>
+<% end %>

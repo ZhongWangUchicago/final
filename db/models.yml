@@ -1,0 +1,23 @@
+Customer
+    first_name: string
+    last_name: string
+
+Restaurant
+    name: string
+    description: string
+
+Reservation
+    restaurant_id
+    customer_id
+
+Comment
+    restaurant_id
+    time_posted: datetime
+    content: string
+
+Picture
+    restaurant_id
+    caption: string
+    time_posted: datetime
+    file_location: string
+

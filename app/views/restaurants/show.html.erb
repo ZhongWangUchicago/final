@@ -1,0 +1,4 @@
+<h1><%= @restaurant.name %></h1>
+<h3><%= @restaurant.description %></h3>
+<%= link_to "Edit", restaurants_edit_url(@restaurant.id) %><br>
+<%= link_to "Delete", restaurants_destroy_url(@restaurant.id), method: 'delete' %>
