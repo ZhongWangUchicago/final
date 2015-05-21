@@ -1,23 +1,28 @@
 Customer
     first_name: string
     last_name: string
+    user_name
+    password
+    email
 
 Restaurant
-    name: string
+    rest_name: string
     description: string
 
 Reservation
-    restaurant_id
-    customer_id
+    restaurant_id: integer
+    customer_id: integer
+    content: text
 
 Comment
-    restaurant_id
-    time_posted: datetime
+    restaurant_id: integer
+    date: datetime
     content: string
+    customer_id: integer
 
 Picture
-    restaurant_id
+    restaurant_id: integer
     caption: string
-    time_posted: datetime
+    date: datetime
     file_location: string
 
