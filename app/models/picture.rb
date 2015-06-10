@@ -1,7 +1,10 @@
 class Picture < ActiveRecord::Base
 
-    belongs_to :restaurant, foreign_key: "restaurant_id", primary_key: "id"
-    belongs_to :customer, foreign_key: "customer_id", primary_key: "id"
-    validates :restaurant, :presence => true
-	validates :customer, :presence => true
+    belongs_to :reviewer
+
+    has_many :comments
+    has_one :customer, :through => :reviewer
+    has_one :restaurant, :through => :reviewer
+    
+    validates_presence_of :file_location
 end

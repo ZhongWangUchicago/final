@@ -1,4 +1,30 @@
-<h1><%= @restaurant.name %></h1>
-<h3><%= @restaurant.description %></h3>
-<%= link_to "Edit", restaurants_edit_url(@restaurant.id) %><br>
-<%= link_to "Delete", restaurants_destroy_url(@restaurant.id), method: 'delete' %>
+<div class="container">
+<h1><%= @restaurant.name %>
+
+<% if @admin %>
+<div class="dropdown pull-right">
+    <a class="btn btn-default" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= restaurants_edit_url(@restaurant.id) %>">Edit</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="<%= restaurants_destroy_url(@restaurant.id) %>" data-method='delete'>Delete</a></li>
+    </ul>
+</div>
+<% end %>
+</h1>
+</div>
+
+<div role="navigation">
+<ul class="nav nav-tabs">
+<% @pages.each do |page| %>
+    <li role="presentation" class="<%= @active_page == page ? "active" : "" %>">
+        <a href="<%= restaurants_show_page_url(@restaurant.id, page) %>"><%= page.capitalize %></a>
+    </li>
+<% end %>
+</ul>
+</div>
+
+<div class="container">
+    <%= render @active_page %>
+</div>

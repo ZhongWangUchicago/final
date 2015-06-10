@@ -1,7 +1,7 @@
-class Reservations < ActiveRecord::Base
+class Reservation < ActiveRecord::Base
+	
+	belongs_to :reviewer
 
-    belongs_to :restaurant, foreign_key: "restaurant_id", primary_key: "id"
-    belongs_to :customer, foreign_key: "customer_id", primary_key: "id"
-	validates :restaurant, :presence => true
-	validates :customer, :presence => true
+	validates_presence_of :title
+    validates_presence_of :content
 end

@@ -1,0 +1,43 @@
+<% if @reservation and @reservation.errors.any? %>
+    <ul>
+        <% @movie.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+<div class="panel-body"></div>
+<%= form_tag reservations_create_url(@restaurant.id), :method => 'reservation', :class => 'form-horizontal' do %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h3 class="panel-title">
+    <input type="text" class="form-control" name="title" placeholder="Title">
+      </h3>
+  </div>
+  <div class="panel-body">
+      <div style="margin-bottom: 15px">
+    <textarea class="form-control" rows="3" name="content" placeholder="Content"></textarea>
+      </div>
+      <div>
+    <button type="submit" class="btn btn-primary">Post</button>
+      </div>
+  </div>
+</div>
+<% end %>
+
+<% @reservations.each do |reservation| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h3 class="panel-title">
+          <%= reservation.title %>
+          <small>
+              <div class="pull-right">
+                  <%= reservation.time_posted.to_formatted_s(:long) %>
+              </div>
+          </small>
+      </h3>
+  </div>
+  <div class="panel-body">
+      <%= reservation.content %>
+  </div>
+</div>
+<% end %>

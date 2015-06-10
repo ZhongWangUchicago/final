@@ -1,62 +1,45 @@
 class CustomersController < ApplicationController
-  def index
-    @customer = Customer.all
-  end
+ 
+    before_action :require_customer, :only => [:show, :edit, :update, :destroy]
 
-  def new
-    @customer = Customer.new
-  end
+    def require_customer
+        if session[:customer_id].blank?
+            redirect_to sessions_login_url, notice: "You must log in first!"
+        end
 
-  def create
-    @customer = Customer.new(user_name: params[:user_name], 
-      password: params[:password], 
-      email: params[:email],
-      first_name: params[:first_name],
-      last_name: params[:last_name])
-
-    if @customer.save
-      redirect_to root_url, notice: "Signing up finished!"
-    else
-      render "new"
+        @customer = Customer.find_by(id: session[:customer_id])
     end
-  end
 
-  def edit
-    @customer = Customer.find(params[:id])
-  end
-
-  def editpw
-    @customer = Customer.find(params[:id])
-  end
-
-  def show
-    @customer = Customer.find(params[:id])
-  end
-
-  def update
-    @customer = Customer.find(params[:id])
-    @pw1 = params[:pw1]
-    @pw2 = params[:pw2]
-    if @pw1.nil? || @pw2.nil? || @pw1.length < 1 || @pw2.length < 1
-      redirect_to Customer_url(@customer.id), notice: "Incorrect password"
-    elsif @pw1 != @pw2
-      redirect_to Customer_url(@customer.id), notice: "Password doed not match"      
-    else
-    @customer.update 
-    email: params[:email],
-    password: params[:pw1],
-    first_name: params[:first_name],
-    ast_name: params[:last_name]
-
-    redirect_to Customer_url(@customer.id), notice: "Change successfully"
+    def show
     end
-  end
 
-  def destroy
-    @customer = Customer.find_by_id(params[:id])
+    def new
+    end
 
-    @customer.destroy
+    def create
+        customer = Customer.new
+        customer.first_name = params[:first_name]
+        customer.last_name = params[:last_name]
+        customer.email = params[:email]
+        customer.password = params[:password]
 
-    redirect_to signout_url
-  end
+        if customer.invalid?
+            redirect_to customers_new_url, notice: customer.errors.messages
+            return
+        end
+
+        customer.save
+        session[:customer_id] = customer.id
+        redirect_to restaurants_index_url
+    end
+
+    def edit
+    end
+
+    def update
+    end
+
+    def destroy
+    end
+
 end

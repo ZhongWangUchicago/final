@@ -1,28 +1,32 @@
 Customer
     first_name: string
     last_name: string
-    user_name
-    password
-    email
+    email: string
+    password_digest: string
 
 Restaurant
-    rest_name: string
+    name: string
     description: string
 
+Reviewer
+    restaurant_id
+    customer_id
+    admin: boolean
+
 Reservation
-    restaurant_id: integer
-    customer_id: integer
-    content: text
+    reviewer_id
+    title: string
+    time_posted: datetime
+    content: string
 
 Comment
-    restaurant_id: integer
-    date: datetime
+    customer_id
+    picture_id
+    time_posted: datetime
     content: string
-    customer_id: integer
 
 Picture
-    restaurant_id: integer
-    caption: string
-    date: datetime
+    reviewer_id
+    time_posted: datetime
     file_location: string
 

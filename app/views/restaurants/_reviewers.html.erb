@@ -1,0 +1,18 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Email</th>
+        </tr>
+    <thead>
+
+    <% @restaurant.customers.each do |restaurant| %>
+        <tr>
+            <td><%= restaurant.last_name %></td>
+            <td><%= restaurant.first_name %></td>
+            <td><%= restaurant.email %></td>
+        </tr>
+    <% end %>
+</table>
+

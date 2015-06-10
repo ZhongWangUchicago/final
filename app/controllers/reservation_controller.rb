@@ -17,7 +17,7 @@ class ReservationController < ApplicationController
                  content: params[:content])
 
     if @reservation.save
-      redirect_to root_url, notice: "reservation Created."
+      redirect_to root_url, notice: "Reservation created."
     else
       render "new"
     end
